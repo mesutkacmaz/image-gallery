@@ -1,8 +1,13 @@
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import Navbar from "./components/Navbar"
+import Footer from "./components/Footer"
+
 const App = () => {
   return (
-    <>
-      <h1>Welcome To Image Gallery</h1>
-    </>
+    <Router>
+      <Navbar />
+      <Footer />
+    </Router>
   );
 }
 
