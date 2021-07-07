@@ -178,6 +178,10 @@ h2 {
   padding: 0;
 }
 
+.prev-next .container a:nth-of-type(1) {
+  margin-right: 5px;
+}
+
 .product-details {
   display: flex;
   justify-content: center;

@@ -6,9 +6,9 @@ const Navbar = () => {
       <div class="container">
         <h1 class="logo">Image Gallery</h1>
         <ul>
-          <Link to='/'>Home</Link>
-          <Link to='/products'>Products</Link>
-          <Link to='/login'> <i className="fas fa-sign-in-alt"></i> Login</Link>
+          <li><Link to='/'>Home</Link></li>
+          <li><Link to='/products'>Products</Link></li>
+          <li><Link to='/login'><i className="fas fa-sign-in-alt"></i> Login</Link></li>
         </ul>
       </div>
     </nav>
