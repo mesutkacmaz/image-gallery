@@ -1,8 +1,25 @@
+import { useState, useEffect } from "react"
+import axios from "axios"
 import { Link } from "react-router-dom"
-import products from "../../products"
+import Spinner from "../Spinner"
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
 
 const Product = ({ match }) => {
-  const product = products.find(p => p._id === match.params.id)
+  const [product, setProduct] = useState({})
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const { data } = await axios.get(`/api/products/${match.params.id}`)
+
+      setProduct(data)
+      setLoading(false)
+    }
+
+    fetchProduct()
+  }, [match.params.id])
+
 
   return (
     <>
@@ -19,17 +36,29 @@ const Product = ({ match }) => {
       </section>
 
       <section className="product-details">
-        <img src={product.images[0]} alt="" />
-        <div>
-          <h4>Description</h4>
-          <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur eaque nam repellendus exercitationem beatae. Facere fugit dolores voluptatibus corporis ut.</p>
-          <h4>Date</h4>
-          <p>Lorem ipsum dolor sit amet.</p>
-          <h4>Categories</h4>
-          <p>Lorem ipsum dolor sit amet.</p>
-          <h4>Client</h4>
-          <p>Lorem ipsum dolor sit amet.</p>
-        </div>
+        {loading ? (
+          <Spinner />
+        ) : (
+          <>
+            <Carousel>
+              {product.images.map((image, index) => (
+                <div key={index}>
+                  <img src={image} alt="" />
+                </div>
+              ))}
+            </Carousel>
+            <div>
+              <h4>Description</h4>
+              <p>{product.description}</p>
+              <h4>Date</h4>
+              <p>Lorem ipsum dolor sit amet.</p>
+              <h4>Categories</h4>
+              <p>{product.categories}</p>
+              <h4>Client</h4>
+              <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+          </>
+        )}
       </section>
     </>
   )
