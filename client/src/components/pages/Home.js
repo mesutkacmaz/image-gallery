@@ -11,7 +11,7 @@ const Home = () => {
         <div className="products-container">
           <Masonry breakpointCols={3} className="my-masonry-grid" columnClassName="my-masonry-grid_column">
             {products.map(product => (
-              <Product product={product} />
+              <Product key={product._id} product={product} />
             ))}
           </Masonry>
         </div>

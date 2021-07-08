@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom"
+import products from "../../products"
 
-const Product = () => {
+const Product = ({ match }) => {
+  const product = products.find(p => p._id === match.params.id)
+
   return (
     <>
       <section className="prev-next">
@@ -16,7 +19,7 @@ const Product = () => {
       </section>
 
       <section className="product-details">
-        <img src="/images/car-1-1.jpg" alt="" />
+        <img src={product.images[0]} alt="" />
         <div>
           <h4>Description</h4>
           <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur eaque nam repellendus exercitationem beatae. Facere fugit dolores voluptatibus corporis ut.</p>
