@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom"
-import source from "../../car-1.jpg"
+import products from '../../products'
+import Masonry from 'react-masonry-css'
+import Product from '../Product'
 
 const Home = () => {
   return (
@@ -7,11 +9,11 @@ const Home = () => {
       <div className="container">
         <h2>Latest Products</h2>
         <div className="products-container">
-          <div className="card">
-            <Link to='/products/1'>
-              <img src={source} alt="" />
-            </Link>
-          </div>
+          <Masonry breakpointCols={3} className="my-masonry-grid" columnClassName="my-masonry-grid_column">
+            {products.map(product => (
+              <Product product={product} />
+            ))}
+          </Masonry>
         </div>
       </div>
     </section>

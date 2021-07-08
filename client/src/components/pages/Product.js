@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom"
-import source from '../../car-1.jpg'
 
 const Product = () => {
   return (
@@ -17,7 +16,7 @@ const Product = () => {
       </section>
 
       <section className="product-details">
-        <img src={source} alt="" />
+        <img src="/images/car-1-1.jpg" alt="" />
         <div>
           <h4>Description</h4>
           <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur eaque nam repellendus exercitationem beatae. Facere fugit dolores voluptatibus corporis ut.</p>
