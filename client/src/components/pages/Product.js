@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react"
-import axios from "axios"
-import { Link } from "react-router-dom"
-import Spinner from "../Spinner"
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Carousel } from 'react-responsive-carousel';
+import { useState, useEffect } from 'react'
+import axios from 'axios'
+import { Link } from 'react-router-dom'
+import Spinner from '../Spinner'
+import { Carousel } from 'react-responsive-carousel'
+import 'react-responsive-carousel/lib/styles/carousel.min.css'
 
-const Product = ({ match }) => {
+const Products = ({ match }) => {
   const [product, setProduct] = useState({})
   const [loading, setLoading] = useState(true)
 
@@ -23,8 +23,8 @@ const Product = ({ match }) => {
 
   return (
     <>
-      <section className="prev-next">
-        <div className="container">
+      <section className='prev-next'>
+        <div className='container'>
           <div>
             <Link to='/products' className='btn btn-sm'>Go Back</Link>
           </div>
@@ -35,7 +35,7 @@ const Product = ({ match }) => {
         </div>
       </section>
 
-      <section className="product-details">
+      <section className='product-details'>
         {loading ? (
           <Spinner />
         ) : (
@@ -64,4 +64,4 @@ const Product = ({ match }) => {
   )
 }
 
-export default Product
+export default Products
