@@ -1,4 +1,5 @@
 const asyncHandler = require('express-async-handler')
+const generateToken = require('../utils/generateToken')
 const User = require('../models/User')
 
 exports.authUser = asyncHandler(async (req, res) => {
@@ -11,7 +12,7 @@ exports.authUser = asyncHandler(async (req, res) => {
       _id: user._id,
       name: user.name,
       email: user.email,
-      token: null
+      token: generateToken(user._id)
     })
   } else {
     res.status(401)
