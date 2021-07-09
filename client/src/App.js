@@ -6,16 +6,20 @@ import Product from './components/pages/Product';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
+import { ProductProvider } from './context/product/ProductState'
+
 const App = () => {
   return (
-    <Router>
-      <Navbar />
-      <Route exact path='/' component={Home} />
-      <Route exact path='/login' component={Login} />
-      <Route exact path='/register' component={Register} />
-      <Route path='/products/:id' component={Product} />
-      <Footer />
-    </Router>
+    <ProductProvider>
+      <Router>
+        <Navbar />
+        <Route exact path='/' component={Home} />
+        <Route exact path='/login' component={Login} />
+        <Route exact path='/register' component={Register} />
+        <Route path='/products/:id' component={Product} />
+        <Footer />
+      </Router>
+    </ProductProvider>
   );
 }
 

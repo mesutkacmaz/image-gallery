@@ -4,7 +4,7 @@ const protect = require('../middleware/authMiddleware')
 
 const { getProducts, getProductById } = require('../controllers/productController')
 
-router.route('/').get(protect, getProducts)
+router.route('/').get(getProducts)
 
 router.route('/:id').get(getProductById)
 
