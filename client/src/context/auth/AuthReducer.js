@@ -6,7 +6,8 @@ const authReducer = (state, action) => {
       return {
         ...state,
         loading: false,
-        user: action.payload
+        user: action.payload,
+        isAuthenticated: true
       }
     case REGISTER_FAIL:
       return {
@@ -18,7 +19,8 @@ const authReducer = (state, action) => {
       return {
         ...state, 
         loading: false, 
-        user: action.payload 
+        user: action.payload,
+        isAuthenticated: true
       }
     case LOGIN_FAIL:
       return {
@@ -27,7 +29,12 @@ const authReducer = (state, action) => {
         error: action.payload 
       }
     case LOGOUT:
-      return {}
+      localStorage.removeItem('user')
+      return {
+        isAuthenticated: false,
+        loading: false,
+        user: null
+      }
     default:
       return state
   }

@@ -6,7 +6,8 @@ import { REGISTER_SUCCESS, REGISTER_FAIL, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } fr
 const initialState = {
   loading: true,
   user: null,
-  error: null
+  error: null,
+  isAuthenticated: null
 }
 
 export const AuthContext = createContext(initialState)
@@ -75,7 +76,7 @@ export const AuthProvider = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ loading: state.loading, error: state.error, user: state.user, register, login, logout }}>
+    <AuthContext.Provider value={{ loading: state.loading, error: state.error, user: state.user, isAuthenticated: state.isAuthenticated, register, login, logout }}>
       { children }
     </AuthContext.Provider>
   )
