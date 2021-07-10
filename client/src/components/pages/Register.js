@@ -9,13 +9,13 @@ const Register = ({ history }) => {
   const [confirmPassword, setConfirmPassword] = useState('')
 
   const authContext = useContext(AuthContext)
-  const { register, user } = authContext
+  const { register, isAuthenticated } = authContext
 
   useEffect(() => {
-    if (user) {
+    if (isAuthenticated) {
       history.push('/')
     }
-  }, [history, user])
+  }, [history, isAuthenticated])
 
   const submitHandler = (e) => {
     e.preventDefault()

@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Home from './components/pages/Home'
 import Login from './components/pages/Login'
 import Register from './components/pages/Register'
+import Products from './components/pages/Products'
 import Product from './components/pages/Product'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -18,6 +19,7 @@ const App = () => {
           <Route exact path='/login' component={Login} />
           <Route exact path='/register' component={Register} />
           <Route path='/products/:id' component={Product} />
+          <Route exact path='/products' component={Products} />
           <Footer />
         </Router>
       </ProductProvider>

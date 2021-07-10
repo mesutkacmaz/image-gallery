@@ -1,35 +1,34 @@
-import { useEffect, useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { ProductContext } from '../../context/product/ProductState'
-import { Link } from 'react-router-dom'
 import Masonry from 'react-masonry-css'
 import Product from '../Product'
 import Spinner from '../Spinner'
 
-const Home = () => {
-  const { latestProducts, listLatestProducts, loading } = useContext(ProductContext)
+const Products = () => {
+  const productContext = useContext(ProductContext)
+  const { products, loading, listProducts } = productContext
 
   useEffect(() => {
-    listLatestProducts()
-  }, [listLatestProducts])
+    listProducts()
+  }, [listProducts])
 
   return (
     <section className='home-products py-2'>
       <div className='container'>
-        <h2>Latest Products</h2>
+        <h2>All Products</h2>
         <div className='products-container'>
           {loading && (
             <Spinner />
           )}
           <Masonry breakpointCols={3} className='my-masonry-grid' columnClassName='my-masonry-grid_column'>
-            {latestProducts.map(product => (
+            {products.map(product => (
               <Product key={product._id} product={product} />
             ))}
           </Masonry>
         </div>
-        <Link to='/products' className='btn btn-sm'>View All Products</Link>
       </div>
     </section>
   )
 }
 
-export default Home
+export default Products
