@@ -6,6 +6,11 @@ exports.getProducts = asyncHandler(async (req, res) => {
   res.json(products)
 })
 
+exports.getLatestProducts = asyncHandler(async (req, res) => {
+  const latestProducts = await Product.find().limit(3)
+  res.json(latestProducts)
+})
+
 exports.getProductById = asyncHandler(async (req, res) => {
   const product = await Product.findById(req.params.id)
 

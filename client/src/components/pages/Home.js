@@ -1,17 +1,18 @@
 import { useState, useEffect, useContext } from 'react'
 import { ProductContext } from '../../context/product/ProductState'
+import { Link } from 'react-router-dom'
 import Masonry from 'react-masonry-css'
 import Product from '../Product'
 import Spinner from '../Spinner'
 
 const Home = () => {
   const [loading, setLoading] = useState(true)
-  const { products, listProducts } = useContext(ProductContext)
+  const { products, listLatestProducts } = useContext(ProductContext)
 
   useEffect(() => {
-    listProducts()
+    listLatestProducts()
     setLoading(false)
-  }, [listProducts])
+  }, [listLatestProducts])
 
   return (
     <section className='home-products py-2'>
@@ -27,6 +28,7 @@ const Home = () => {
             ))}
           </Masonry>
         </div>
+        <Link to='/products' className='btn btn-sm'>View All Products</Link>
       </div>
     </section>
   )
