@@ -40,7 +40,7 @@ const Products = ({ match }) => {
           <Spinner />
         ) : (
           <>
-            <Carousel>
+            <Carousel dynamicHeight={true} showThumbs={false}>
               {product.images.map((image, index) => (
                 <div key={index}>
                   <img src={image} alt="" />

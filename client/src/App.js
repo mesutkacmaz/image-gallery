@@ -6,19 +6,22 @@ import Product from './components/pages/Product'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import { ProductProvider } from './context/product/ProductState'
+import { AuthProvider } from './context/auth/AuthState'
 
 const App = () => {
   return (
-    <ProductProvider>
-      <Router>
-        <Navbar />
-        <Route exact path='/' component={Home} />
-        <Route exact path='/login' component={Login} />
-        <Route exact path='/register' component={Register} />
-        <Route path='/products/:id' component={Product} />
-        <Footer />
-      </Router>
-    </ProductProvider>
+    <AuthProvider>
+      <ProductProvider>
+        <Router>
+          <Navbar />
+          <Route exact path='/' component={Home} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/register' component={Register} />
+          <Route path='/products/:id' component={Product} />
+          <Footer />
+        </Router>
+      </ProductProvider>
+    </AuthProvider>
   );
 }
 

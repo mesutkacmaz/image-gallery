@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState)
 
   // Register an user
-  const register = (name, email, password) => async (dispatch) => {
+  const register = async (name, email, password) => {
     try {
       const config = {
         headers: {
@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
-  const login = (email, password) => async (dispatch) => {
+  const login = async (email, password) => {
     try {
       const config = {
         headers: {
@@ -62,21 +62,21 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem('user', JSON.stringify(data))
     } catch (error) {
       dispatch({
-        type: REGISTER_FAIL,
+        type: LOGIN_FAIL,
         payload: error.response && error.response.data.message ? error.response.data.message : error.message
       })
     }
   }
 
-  const logout = () => (dispatch) => {
+  const logout = () => {
     localStorage.removeItem('user')
     dispatch({ type: LOGOUT })
     document.location.href = '/login'
   }
 
   return (
-    <ProductContext.Provider value={{ loading: state.loading, error: state.error, user: state.user, listLatestProducts, register, login, logout, dispatch }}>
+    <AuthContext.Provider value={{ loading: state.loading, error: state.error, user: state.user, register, login, logout }}>
       { children }
-    </ProductContext.Provider>
+    </AuthContext.Provider>
   )
 }
