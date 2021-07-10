@@ -16,7 +16,7 @@ const Navbar = () => {
           {isAuthenticated ? (
             <li><Link to='/login' onClick={logout}><i className='fas fa-sign-out-alt'></i> Logout</Link></li>
           ) : (
-            <li><Link to='/login'><i className='fas fa-sign-in-alt'></i> Login</Link></li>
+            <li><Link to='/login' className='btn-login'><i className='fas fa-sign-in-alt'></i> Login</Link></li>
           )}
         </ul>
       </div>

@@ -64,6 +64,12 @@ h2 {
   font-size: 0.6rem;
 }
 
+.btn-login {
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  box-shadow: 1px 1px 10px 1px #9c9c9c;
+}
+
 .btn-light { background-color: var(--light-color); }
 .btn-primary { background-color: var(--primary-color); }
 .btn-secondary { background-color: var(--secondary-color); }
@@ -74,8 +80,6 @@ h2 {
 .p-1 { padding: 1.5rem; }
 .p-2 { padding: 2rem; }
 .p-3 { padding: 3rem; }
-
-
 
 .logo {
   text-transform: uppercase;
@@ -101,7 +105,7 @@ h2 {
 }
 
 .nav .container ul li a {
-  padding: 0.75rem 1rem;
+  padding: 0.70rem 1.5rem;
   font-weight: 500;
   transition: all 0.3s ease-in-out;
   margin-left: 5px;
@@ -210,6 +214,30 @@ h2 {
   font-size: 1.2rem;
 }
 
+.my-masonry-grid {
+  display: -webkit-box; /* Not needed if autoprefixing */
+  display: -ms-flexbox; /* Not needed if autoprefixing */
+  display: flex;
+  margin-left: -30px; /* gutter size offset */
+  width: auto;
+}
+
+.my-masonry-grid_column {
+  padding-left: 30px; /* gutter size */
+  background-clip: padding-box;
+}
+
+/* Style your items */
+.my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
+  background: grey;
+  margin-bottom: 30px;
+  border-radius: 15px;
+}
+
+.my-masonry-grid_column > div img {
+  border-radius: 15px;
+}
+
 /* Footer */
 .footer {
   background-color: var(--dark-color);
@@ -272,23 +300,4 @@ h2 {
   .product-details div {
     margin-top: 10px;
   }
-}
-
-.my-masonry-grid {
-  display: -webkit-box; /* Not needed if autoprefixing */
-  display: -ms-flexbox; /* Not needed if autoprefixing */
-  display: flex;
-  margin-left: -30px; /* gutter size offset */
-  width: auto;
-}
-
-.my-masonry-grid_column {
-  padding-left: 30px; /* gutter size */
-  background-clip: padding-box;
-}
-
-/* Style your items */
-.my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
-  background: grey;
-  margin-bottom: 30px;
 }
