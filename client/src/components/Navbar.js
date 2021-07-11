@@ -14,7 +14,7 @@ const Navbar = () => {
           <li><Link to='/'>Home</Link></li>
           <li><Link to='/products'>Products</Link></li>
           {isAuthenticated ? (
-            <li><Link to='/login' onClick={logout}><i className='fas fa-sign-out-alt'></i> Logout</Link></li>
+            <li><Link to='/login' onClick={logout} className='btn-login'><i className='fas fa-sign-out-alt'></i> Logout</Link></li>
           ) : (
             <li><Link to='/login' className='btn-login'><i className='fas fa-sign-in-alt'></i> Login</Link></li>
           )}

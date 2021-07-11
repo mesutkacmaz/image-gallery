@@ -51,11 +51,11 @@ const Products = ({ match }) => {
               <h4>Description</h4>
               <p>{product.description}</p>
               <h4>Date</h4>
-              <p>Lorem ipsum dolor sit amet.</p>
+              <p>{product.from.slice(0, 10)} - {product.to.slice(0, 10)}</p>
               <h4>Categories</h4>
               <p>{product.categories}</p>
               <h4>Client</h4>
-              <p>Lorem ipsum dolor sit amet.</p>
+              <p>{product.client}</p>
             </div>
           </>
         )}
