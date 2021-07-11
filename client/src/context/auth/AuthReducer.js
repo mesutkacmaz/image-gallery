@@ -1,4 +1,4 @@
-import { REGISTER_SUCCESS, REGISTER_FAIL, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from '../types'
+import { REGISTER_SUCCESS, REGISTER_FAIL, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, CLEAR_ERRORS } from '../types'
 
 const authReducer = (state, action) => {
   switch (action.type) {
@@ -33,7 +33,13 @@ const authReducer = (state, action) => {
       return {
         isAuthenticated: false,
         loading: false,
-        user: null
+        user: null,
+        error: action.payload
+      }
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null
       }
     default:
       return state

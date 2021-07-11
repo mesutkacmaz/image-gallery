@@ -1,7 +1,7 @@
 import { createContext, useReducer } from 'react'
 import authReducer from './AuthReducer'
 import axios from 'axios'
-import { REGISTER_SUCCESS, REGISTER_FAIL, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from '../types'
+import { REGISTER_SUCCESS, REGISTER_FAIL, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, CLEAR_ERRORS } from '../types'
 
 const initialState = {
   loading: true,
@@ -69,6 +69,8 @@ export const AuthProvider = ({ children }) => {
     }
   }
 
+  const clearErrors = () => dispatch({ type: CLEAR_ERRORS })
+
   const logout = () => {
     localStorage.removeItem('user')
     dispatch({ type: LOGOUT })
@@ -76,7 +78,7 @@ export const AuthProvider = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ loading: state.loading, error: state.error, user: state.user, isAuthenticated: state.isAuthenticated, register, login, logout }}>
+    <AuthContext.Provider value={{ loading: state.loading, error: state.error, user: state.user, isAuthenticated: state.isAuthenticated, register, login, clearErrors, logout }}>
       { children }
     </AuthContext.Provider>
   )

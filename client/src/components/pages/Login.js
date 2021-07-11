@@ -1,13 +1,26 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../context/auth/AuthState'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const Login = ({ history }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const authContext = useContext(AuthContext)
-  const { login } = authContext
+  const { login, error, clearErrors, isAuthenticated } = authContext
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      history.push('/')
+    }
+
+    if (error) {
+      toast.error(error)
+      clearErrors()
+    }
+  }, [clearErrors, error, isAuthenticated, history])
 
   const submitHandler = e => {
     e.preventDefault()
@@ -17,6 +30,7 @@ const Login = ({ history }) => {
 
   return (
     <div className='auth'>
+      <ToastContainer />
       <h1><i className='fas fa-user'></i> Log In</h1>
       <form onSubmit={submitHandler}>
         <div>

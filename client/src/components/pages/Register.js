@@ -1,6 +1,8 @@
 import { useState, useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../../context/auth/AuthState'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const Register = ({ history }) => {
   const [name, setName] = useState('')
@@ -9,24 +11,30 @@ const Register = ({ history }) => {
   const [confirmPassword, setConfirmPassword] = useState('')
 
   const authContext = useContext(AuthContext)
-  const { register, isAuthenticated } = authContext
+  const { register, isAuthenticated, error, clearErrors } = authContext
 
   useEffect(() => {
     if (isAuthenticated) {
       history.push('/')
     }
-  }, [history, isAuthenticated])
+
+    if (error) {
+      toast.error(error)
+      clearErrors()
+    }
+  }, [history, isAuthenticated, clearErrors, error])
 
   const submitHandler = (e) => {
     e.preventDefault()
-    // if (password !== confirmPassword) {
-    //   // Set Message
-    // }
+    if (password !== confirmPassword) {
+      toast.error('Passwords do not match')
+    }
     register(name, email, password)
   }
 
   return (
     <div className='auth'>
+      <ToastContainer />
       <h1><i className='fas fa-user'></i> Register</h1>
       <form onSubmit={submitHandler}>
         <div>
