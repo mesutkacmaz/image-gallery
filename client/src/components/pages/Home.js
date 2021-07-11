@@ -20,7 +20,7 @@ const Home = () => {
           {loading && (
             <Spinner />
           )}
-          <Masonry breakpointCols={3} className='my-masonry-grid' columnClassName='my-masonry-grid_column'>
+          <Masonry breakpointCols={breakpointColumnsObj} className='my-masonry-grid' columnClassName='my-masonry-grid_column'>
             {latestProducts.map(product => (
               <Product key={product._id} product={product} />
             ))}
@@ -30,6 +30,12 @@ const Home = () => {
       </div>
     </section>
   )
+}
+
+const breakpointColumnsObj = {
+  default: 3,
+  1100: 2,
+  500: 1
 }
 
 export default Home
