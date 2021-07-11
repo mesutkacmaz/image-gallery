@@ -6,6 +6,7 @@ import Products from './components/pages/Products'
 import Product from './components/pages/Product'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import PrivateRoute from './components/PrivateRoute'
 import { ProductProvider } from './context/product/ProductState'
 import { AuthProvider } from './context/auth/AuthState'
 
@@ -18,8 +19,8 @@ const App = () => {
           <Route exact path='/' component={Home} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/register' component={Register} />
-          <Route path='/products/:id' component={Product} />
-          <Route exact path='/products' component={Products} />
+          <PrivateRoute path='/products/:id' component={Product} />
+          <PrivateRoute exact path='/products' component={Products} />
           <Footer />
         </Router>
       </ProductProvider>
