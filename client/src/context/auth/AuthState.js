@@ -2,10 +2,11 @@ import { createContext, useReducer } from 'react'
 import authReducer from './AuthReducer'
 import axios from 'axios'
 import { REGISTER_SUCCESS, REGISTER_FAIL, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, CLEAR_ERRORS } from '../types'
+import setAuthToken from '../../utils/setAuthToken'
 
 const initialState = {
+  token: localStorage.getItem('token'),
   loading: true,
-  user: null,
   error: null,
   isAuthenticated: null
 }
@@ -35,8 +36,6 @@ export const AuthProvider = ({ children }) => {
         type: LOGIN_SUCCESS,
         payload: data,
       })
-  
-      localStorage.setItem('user', JSON.stringify(data))
     } catch (error) {
       dispatch({
         type: REGISTER_FAIL,
@@ -59,8 +58,8 @@ export const AuthProvider = ({ children }) => {
         type: LOGIN_SUCCESS,
         payload: data
       })
-  
-      localStorage.setItem('user', JSON.stringify(data))
+
+      setAuthToken(localStorage.token)
     } catch (error) {
       dispatch({
         type: LOGIN_FAIL,
@@ -72,13 +71,12 @@ export const AuthProvider = ({ children }) => {
   const clearErrors = () => dispatch({ type: CLEAR_ERRORS })
 
   const logout = () => {
-    localStorage.removeItem('user')
     dispatch({ type: LOGOUT })
     document.location.href = '/login'
   }
 
   return (
-    <AuthContext.Provider value={{ loading: state.loading, error: state.error, user: state.user, isAuthenticated: state.isAuthenticated, register, login, clearErrors, logout }}>
+    <AuthContext.Provider value={{ loading: state.loading, error: state.error, token: state.token, isAuthenticated: state.isAuthenticated, register, login, clearErrors, logout }}>
       { children }
     </AuthContext.Provider>
   )
