@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import Spinner from '../Spinner'
 import { Carousel } from 'react-responsive-carousel'
 import 'react-responsive-carousel/lib/styles/carousel.min.css'
+import setAuthToken from '../../utils/setAuthToken'
 
 const Products = ({ match }) => {
   const [product, setProduct] = useState({})
@@ -11,6 +12,7 @@ const Products = ({ match }) => {
 
   useEffect(() => {
     const fetchProduct = async () => {
+      setAuthToken(localStorage.token)
       const { data } = await axios.get(`/api/products/${match.params.id}`)
 
       setProduct(data)

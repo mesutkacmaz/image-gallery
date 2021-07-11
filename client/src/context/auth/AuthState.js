@@ -2,13 +2,12 @@ import { createContext, useReducer } from 'react'
 import authReducer from './AuthReducer'
 import axios from 'axios'
 import { REGISTER_SUCCESS, REGISTER_FAIL, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, CLEAR_ERRORS } from '../types'
-import setAuthToken from '../../utils/setAuthToken'
 
 const initialState = {
   token: localStorage.getItem('token'),
   loading: true,
   error: null,
-  isAuthenticated: null
+  isAuthenticated: localStorage.getItem('token')
 }
 
 export const AuthContext = createContext(initialState)
@@ -58,8 +57,6 @@ export const AuthProvider = ({ children }) => {
         type: LOGIN_SUCCESS,
         payload: data
       })
-
-      setAuthToken(localStorage.token)
     } catch (error) {
       dispatch({
         type: LOGIN_FAIL,

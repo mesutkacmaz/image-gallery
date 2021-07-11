@@ -2,6 +2,7 @@ import { createContext, useReducer } from 'react'
 import productReducer from './ProductReducer'
 import axios from 'axios'
 import { PRODUCT_LIST_SUCCESS, PRODUCT_LIST_FAIL, PRODUCT_LIST_LATEST_SUCCESS, PRODUCT_LIST_LATEST_FAIL } from '../types'
+import setAuthToken from '../../utils/setAuthToken'
 
 const initialState = {
   products: [],
@@ -30,6 +31,7 @@ export const ProductProvider = ({ children }) => {
 
   // Get All Products
   const listProducts = async () => {
+    setAuthToken(localStorage.token)
     try {
       const { data } = await axios.get('/api/products')
       dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data })
